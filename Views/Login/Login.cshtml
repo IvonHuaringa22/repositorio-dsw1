@@ -2,46 +2,36 @@
 
 @{
     ViewData["Title"] = "Iniciar Sesión";
-    Layout = "~/Views/Shared/_Layout.cshtml"; 
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="container py-5">
     <div class="row justify-content-center align-items-center">
-        <!-- Sección izquierda: imagen o información -->
+        <!-- Imagen a la izquierda -->
         <div class="col-md-6 d-none d-md-block">
-            <img src="~/images/login-illustration.png" class="img-fluid" alt="Imagen de bienvenida" />
+            <img src="~/img/bienvenido.jpg" class="img-fluid rounded shadow" alt="Imagen de bienvenida" />
         </div>
 
-        <!-- Sección derecha: formulario de login -->
+        <!-- Formulario a la derecha -->
         <div class="col-md-6">
-            <div class="card shadow">
-                <div class="card-header bg-primary text-white">
-                    <h4 class="mb-0">Iniciar Sesión</h4>
+            <div class="card shadow-lg border-0" style="background-color: #1c1c1c; color: white;">
+                <div class="card-header" style="background-color: #dc3545; color: white;">
+                    <h4 class="mb-0 text-center">Iniciar Sesión</h4>
                 </div>
                 <div class="card-body">
                     <form asp-controller="Login" asp-action="Login" method="post">
                         <div class="mb-3">
                             <label class="form-label">Correo electrónico:</label>
-                            <input asp-for="Correo" class="form-control" type="email" required />
+                            <input asp-for="Correo" class="form-control bg-dark text-white border-secondary" type="email" required />
                         </div>
 
                         <div class="mb-3">
                             <label class="form-label">Contraseña:</label>
-                            <input asp-for="Contraseña" class="form-control" type="password" required />
-                        </div>
-
-                        <!-- Opción para elegir tipo de usuario (opcional si solo es visual) -->
-                        <div class="mb-3">
-                            <label class="form-label">Ingresar como:</label>
-                            <select class="form-select" disabled>
-                                <option selected>Seleccionado automáticamente según tus credenciales</option>
-                                <option>Administrador</option>
-                                <option>Cliente</option>
-                            </select>
+                            <input asp-for="Contraseña" class="form-control bg-dark text-white border-secondary" type="password" required />
                         </div>
 
                         <div class="d-grid">
-                            <button type="submit" class="btn btn-primary">Iniciar sesión</button>
+                            <button type="submit" class="btn btn-danger">Iniciar sesión</button>
                         </div>
                     </form>
 
