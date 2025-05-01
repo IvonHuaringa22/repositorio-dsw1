@@ -1,6 +1,7 @@
 ﻿using Proyecto_DSWI_GP3.Data.Contrato;
 using Proyecto_DSWI_GP3.Models;
 using Newtonsoft.Json;
+using Microsoft.CodeAnalysis.Scripting;
 
 namespace Proyecto_DSWI_GP3.Data
 {
@@ -17,9 +18,12 @@ namespace Proyecto_DSWI_GP3.Data
             using (var clienteHttp = new HttpClient())
             {
                 clienteHttp.BaseAddress = new Uri(_config["Services:url"]);
+                usuarios.Contraseña = BCrypt.Net.BCrypt.HashPassword(usuarios.Contraseña);
+
                 var contenido = new StringContent(JsonConvert.SerializeObject(usuarios), System.Text.Encoding.UTF8, "application/json");
                 var respuesta = await clienteHttp.PostAsync("Usuarios", contenido);
                 var data = await respuesta.Content.ReadAsStringAsync();
+
                 return bool.Parse(data);
             }
         }

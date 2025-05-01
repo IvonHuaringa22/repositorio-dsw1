@@ -1,0 +1,58 @@
+﻿@model Proyecto_DSWI_GP3.Models.Usuarios
+
+@{
+    ViewData["Title"] = "Iniciar Sesión";
+    Layout = "~/Views/Shared/_Layout.cshtml"; 
+}
+
+<div class="container py-5">
+    <div class="row justify-content-center align-items-center">
+        <!-- Sección izquierda: imagen o información -->
+        <div class="col-md-6 d-none d-md-block">
+            <img src="~/images/login-illustration.png" class="img-fluid" alt="Imagen de bienvenida" />
+        </div>
+
+        <!-- Sección derecha: formulario de login -->
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">Iniciar Sesión</h4>
+                </div>
+                <div class="card-body">
+                    <form asp-controller="Login" asp-action="Login" method="post">
+                        <div class="mb-3">
+                            <label class="form-label">Correo electrónico:</label>
+                            <input asp-for="Correo" class="form-control" type="email" required />
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Contraseña:</label>
+                            <input asp-for="Contraseña" class="form-control" type="password" required />
+                        </div>
+
+                        <!-- Opción para elegir tipo de usuario (opcional si solo es visual) -->
+                        <div class="mb-3">
+                            <label class="form-label">Ingresar como:</label>
+                            <select class="form-select" disabled>
+                                <option selected>Seleccionado automáticamente según tus credenciales</option>
+                                <option>Administrador</option>
+                                <option>Cliente</option>
+                            </select>
+                        </div>
+
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary">Iniciar sesión</button>
+                        </div>
+                    </form>
+
+                    @if (ViewBag.Mensaje != null)
+                    {
+                        <div class="alert alert-danger mt-3 text-center" role="alert">
+                            @ViewBag.Mensaje
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
