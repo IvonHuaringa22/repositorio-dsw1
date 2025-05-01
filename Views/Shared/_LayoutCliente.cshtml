@@ -6,25 +6,44 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Panel del Cliente</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+    <title>@ViewData["Title"] - TU TICKET</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Proyecto_DSWI_GP3.styles.css" asp-append-version="true" />
 </head>
-<body class="bg-light">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+
+<body style="background-color: #111; color: white;">
+    <!-- Imagen de portada -->
+    <div class="text-center mb-4">
+        <img src="~/img/portada.jpg" class="img-fluid w-100" style="max-height: 250px; object-fit: cover;" alt="Portada" />
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg" style="background-color: #1c1c1c;">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Bienvenido Cliente</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuCliente">
+            <a class="navbar-brand fw-bold" href="#" style="color: #c69aff;">TICKET EASY</a>
+            <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarAdmin" aria-controls="navbarAdmin" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="menuCliente">
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+
+            <div class="collapse navbar-collapse" id="navbarAdmin">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" href="#">Inicio</a>
+                        <a class="nav-link text-white" asp-controller="Login" asp-action="Index">Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-warning" asp-controller="Login" asp-action="Logout">Cerrar sesión</a>
+                        <a class="nav-link text-white" asp-controller="Eventos" asp-action="Index">Próximos Eventos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" asp-controller="Login" asp-action="Index">Blog</a>
                     </li>
                 </ul>
+
+                <span class="navbar-text text-white me-3">
+                    Bienvenido: @Context.Session.GetString("Nombre")
+                </span>
+
+                <a class="btn btn-outline-light" style="border-color: #c69aff; color: #c69aff;" asp-controller="Login" asp-action="Logout">Cerrar sesión</a>
             </div>
         </div>
     </nav>
@@ -33,8 +52,9 @@
         @RenderBody()
     </main>
 
-    <footer class="bg-primary text-white text-center p-2 mt-4">
-        <small>© 2025 - Panel Cliente</small>
+    <!-- Footer -->
+    <footer class="text-center text-white py-3" style="background-color: #1c1c1c; border-top: 3px solid #c69aff;">
+        &copy; 2025 - TICKET EASY - Todos los derechos reservados
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
