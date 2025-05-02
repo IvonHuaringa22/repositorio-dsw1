@@ -10,52 +10,80 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Proyecto_DSWI_GP3.styles.css" asp-append-version="true" />
+    <style>
+        /* Asegura que el contenido ocupe toda la altura disponible */
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+
+        .wrapper {
+            display: flex;
+            flex-direction: column;
+            min-height: 100%;
+        }
+
+        .main-content {
+            flex: 1;
+        }
+
+        footer {
+            background-color: #1c1c1c;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            margin-top: auto;
+        }
+    </style>
 </head>
 
 <body style="background-color: #111; color: white;">
-    <!-- Imagen de portada -->
-    <div class="text-center mb-4">
-        <img src="~/img/portada.jpg" class="img-fluid w-100" style="max-height: 250px; object-fit: cover;" alt="Portada" />
-    </div>
-
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg" style="background-color: #1c1c1c;">
-        <div class="container-fluid">
-            <a class="navbar-brand fw-bold" href="#" style="color: #c69aff;">TICKET EASY</a>
-            <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarAdmin" aria-controls="navbarAdmin" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarAdmin">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link text-white" asp-controller="Login" asp-action="Index">Inicio</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" asp-controller="Eventos" asp-action="Index">Próximos Eventos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" asp-controller="Login" asp-action="Index">Blog</a>
-                    </li>
-                </ul>
-
-                <span class="navbar-text text-white me-3">
-                    Bienvenido: @Context.Session.GetString("Nombre")
-                </span>
-
-                <a class="btn btn-outline-light" style="border-color: #c69aff; color: #c69aff;" asp-controller="Login" asp-action="Logout">Cerrar sesión</a>
-            </div>
+    <div class="wrapper">
+        <!-- Imagen de portada -->
+        <div class="text-center mb-4">
+            <img src="~/img/portada.jpg" class="img-fluid w-100" style="max-height: 250px; object-fit: cover;" alt="Portada" />
         </div>
-    </nav>
 
-    <main class="container mt-4">
-        @RenderBody()
-    </main>
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg" style="background-color: #1c1c1c;">
+            <div class="container-fluid">
+                <a class="navbar-brand fw-bold" href="#" style="color: #c69aff;">TICKET EASY</a>
+                <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarAdmin" aria-controls="navbarAdmin" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-    <!-- Footer -->
-    <footer class="text-center text-white py-3" style="background-color: #1c1c1c; border-top: 3px solid #c69aff;">
-        &copy; 2025 - TICKET EASY - Todos los derechos reservados
-    </footer>
+                <div class="collapse navbar-collapse" id="navbarAdmin">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-controller="Login" asp-action="Index">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-controller="Eventos" asp-action="Index">Próximos Eventos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-controller="Login" asp-action="Index">Blog</a>
+                        </li>
+                    </ul>
+
+                    <span class="navbar-text text-white me-3">
+                        Bienvenido: @Context.Session.GetString("Nombre")
+                    </span>
+
+                    <a class="btn btn-outline-light" style="border-color: #c69aff; color: #c69aff;" asp-controller="Login" asp-action="Logout">Cerrar sesión</a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Contenido principal -->
+        <main class="main-content container mt-4">
+            @RenderBody()
+        </main>
+
+        <!-- Footer -->
+        <footer>
+            &copy; 2025 - TICKET EASY - Todos los derechos reservados
+        </footer>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>

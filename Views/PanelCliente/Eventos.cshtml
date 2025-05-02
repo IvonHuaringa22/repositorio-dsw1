@@ -1,0 +1,26 @@
+﻿@model List<Proyecto_DSWI_GP3.Models.Eventos>
+
+@{
+    ViewData["Title"] = "Eventos Disponibles";
+    Layout = "~/Views/Shared/_LayoutCliente.cshtml";
+}
+
+<div class="container py-5">
+    <h3>Eventos Disponibles</h3>
+    <div class="row">
+        @foreach (var eventos in Model)
+        {
+            <div class="col-md-4 mb-3">
+                <div class="card bg-dark text-white">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">@eventos.NombreEvento</h5>
+                        <p class="card-text">@eventos.Descripcion</p>
+                        <p class="card-text">Fecha: @eventos.Fecha.ToString("dd/MM/yyyy")</p>
+                        <p class="card-text">Hora: @eventos.Hora.ToString(@"hh\:mm")</p>
+                        <a href="#" class="btn btn-outline-light">Ver más</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

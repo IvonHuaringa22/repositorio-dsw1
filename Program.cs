@@ -5,6 +5,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddHttpClient();
+
 
 // HABILITAR SERVICIO DE SESIÓN
 builder.Services.AddSession(options =>
@@ -16,6 +18,7 @@ builder.Services.AddSession(options =>
 
 // Dependencias
 builder.Services.AddScoped<IUsuarios, UsuariosRepositorio>();
+builder.Services.AddScoped<IEventos, EventosRepositorio>();
 
 var app = builder.Build();
 
