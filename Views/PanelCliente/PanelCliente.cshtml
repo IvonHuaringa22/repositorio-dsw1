@@ -4,40 +4,41 @@
 }
 
 <div class="container py-5">
-    <div class="card shadow rounded">
-        <div class="card-header bg-primary text-white">
-            <h3 class="mb-0">Categorias</h3>
+    <div class="card shadow rounded border-0" style="background-color: #1c1c1c; color: white;">
+        <div class="card-header text-white" style="background-color: #6f42c1;">
+            <!-- lila oscuro -->
+            <h3 class="mb-0">Categorías</h3>
         </div>
         <div class="card-body">
             <p class="lead">Aquí podrás gestionar tus compras, ver eventos disponibles y más funcionalidades.</p>
 
             <div class="row">
                 <div class="col-md-4 mb-3">
-                    <div class="card border-0 shadow-sm h-100">
+                    <div class="card border-0 shadow-sm h-100 bg-dark text-white">
                         <div class="card-body text-center">
                             <h5 class="card-title">Mis Compras</h5>
                             <p class="card-text">Consulta el historial de tus compras realizadas.</p>
-                            <a href="#" class="btn btn-outline-primary">Ver compras</a>
+                            <a href="#" class="btn btn-outline-light" style="border-color: #6f42c1; color: #6f42c1;">Ver compras</a>
                         </div>
                     </div>
                 </div>
 
                 <div class="col-md-4 mb-3">
-                    <div class="card border-0 shadow-sm h-100">
+                    <div class="card border-0 shadow-sm h-100 bg-dark text-white">
                         <div class="card-body text-center">
                             <h5 class="card-title">Eventos Disponibles</h5>
                             <p class="card-text">Explora los eventos actuales y próximos.</p>
-                            <a href="#" class="btn btn-outline-success">Ver eventos</a>
+                            <a href="@Url.Action("Eventos", "PanelCliente")" class="btn btn-outline-light" style="border-color: #6f42c1; color: #6f42c1;">Ver eventos</a>
                         </div>
                     </div>
                 </div>
 
                 <div class="col-md-4 mb-3">
-                    <div class="card border-0 shadow-sm h-100">
+                    <div class="card border-0 shadow-sm h-100 bg-dark text-white">
                         <div class="card-body text-center">
                             <h5 class="card-title">Mi Perfil</h5>
                             <p class="card-text">Actualiza tus datos personales o cambia tu contraseña.</p>
-                            <a href="#" class="btn btn-outline-secondary">Ir al perfil</a>
+                            <a href="#" class="btn btn-outline-light" style="border-color: #6f42c1; color: #6f42c1;">Ir al perfil</a>
                         </div>
                     </div>
                 </div>

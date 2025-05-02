@@ -20,6 +20,13 @@ namespace Proyecto_DSWI_GP3.Controllers
         [HttpGet]
         public IActionResult Login()
         {
+            var rol = HttpContext.Session.GetString("Rol");
+
+            if (rol == "Administrador")
+                return RedirectToAction("Index", "PanelAdmin");
+            else if (rol == "Cliente")
+                return RedirectToAction("Index", "PanelCliente");
+
             return View();
         }
 
