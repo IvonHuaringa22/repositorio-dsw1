@@ -1,0 +1,33 @@
+﻿@model Proyecto_DSWI_GP3.Models.DetalleEventoViewModel
+
+@{
+    ViewData["Title"] = "Detalle del Evento";
+    Layout = "~/Views/Shared/_LayoutCliente.cshtml";
+}
+
+<div class="container py-4">
+    <h2 class="text-white mb-3">@Model.Eventos.NombreEvento</h2>
+    <p class="text-white">@Model.Eventos.Descripcion</p>
+    <p class="text-white"><strong>Fecha:</strong> @Model.Eventos.Fecha.ToString("dd/MM/yyyy")</p>
+
+    <h4 class="text-white mt-4">Zonas disponibles</h4>
+    <table class="table table-dark table-striped mt-2">
+        <thead>
+            <tr>
+                <th>Zona</th>
+                <th>Precio</th>
+                <th>Capacidad</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var zonas in Model.Zonas ?? new List<Zonas>())
+            {
+                <tr>
+                    <td>@zonas.NombreZona</td>
+                    <td>S/ @zonas.Precio.ToString("F2")</td>
+                    <td>@zonas.Capacidad</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
