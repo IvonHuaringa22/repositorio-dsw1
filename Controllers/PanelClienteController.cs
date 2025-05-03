@@ -1,4 +1,5 @@
 ﻿using System.Security.Policy;
+using System.Text;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Proyecto_DSWI_GP3.Models;
@@ -73,5 +74,7 @@ namespace Proyecto_DSWI_GP3.Controllers
 
             return View("Detalle", viewModel);
         }
+
+
     }
 }

@@ -1,0 +1,65 @@
+﻿@model Proyecto_DSWI_GP3.Models.PerfilClienteViewModel
+
+@{
+    ViewData["Title"] = "Mi Perfil";
+    Layout = "~/Views/Shared/_LayoutCliente.cshtml";
+}
+
+<div class="container py-4">
+    <h2 class="text-lila mb-4">Mi Perfil</h2>
+
+    <form asp-action="ActualizarPerfil" method="post" class="text-white">
+        <input type="hidden" asp-for="IdCliente" />
+        <input type="hidden" asp-for="Usuarios.IdUsuario" />
+
+        <div class="mb-3">
+            <label asp-for="Nombre" class="form-label">Nombre</label>
+            <input asp-for="Nombre" class="form-control" style="background-color: #1e1e1e; color: white;" />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Correo</label>
+            <input asp-for="@Model.Usuarios.Correo" class="form-control" style="background-color: #1e1e1e; color: white;" readonly />
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="DNI" class="form-label">DNI</label>
+            <input asp-for="DNI" class="form-control" style="background-color: #1e1e1e; color: white;" />
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Telefono" class="form-label">Teléfono</label>
+            <input asp-for="Telefono" class="form-control" style="background-color: #1e1e1e; color: white;" />
+        </div>
+
+        <button type="button" class="btn btn-lila" style="background-color: #8a2be2; color: white; padding: 8px 15px;" data-bs-toggle="modal" data-bs-target="#confirmModal">
+            Actualizar
+        </button>
+    </form>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content" style="background-color: #333; color: white;">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirmModalLabel">Confirmar Actualización</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ¿Estás seguro de que deseas actualizar tus datos?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="submit" class="btn btn-lila" style="background-color: #8a2be2; color: white;">Confirmar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["Error"]
+    </div>
+}

@@ -39,6 +39,7 @@ namespace Proyecto_DSWI_GP3.Controllers
             if (usuario != null && BCrypt.Net.BCrypt.Verify(modelo.Contraseña, usuario.Contraseña))
             {
                 // Guardar datos en sesión
+                HttpContext.Session.SetInt32("IdUsuario", usuario.IdUsuario);
                 HttpContext.Session.SetString("Correo", usuario.Correo);
                 HttpContext.Session.SetString("Rol", usuario.TipoUsuario);
                 HttpContext.Session.SetString("Nombre", usuario.Nombre);
