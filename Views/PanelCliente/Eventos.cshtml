@@ -17,7 +17,8 @@
                         <p class="card-text">@eventos.Descripcion</p>
                         <p class="card-text">Fecha: @eventos.Fecha.ToString("dd/MM/yyyy")</p>
                         <p class="card-text">Hora: @eventos.Hora.ToString(@"hh\:mm")</p>
-                        <a href="#" class="btn btn-outline-light">Ver más</a>
+                        <a asp-controller="PanelCliente" asp-action="Detalle" asp-route-id="@eventos.IdEvento" class="btn btn-outline-light mt-2">Ver más</a>
+
                     </div>
                 </div>
             </div>
