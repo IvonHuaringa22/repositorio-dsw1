@@ -11,10 +11,12 @@ builder.Services.AddHttpClient();
 // HABILITAR SERVICIO DE SESIÓN
 builder.Services.AddSession(options =>
 {
-    options.IdleTimeout = TimeSpan.FromMinutes(30); // Opcional: duración de la sesión
+    options.IdleTimeout = TimeSpan.FromMinutes(30);
     options.Cookie.HttpOnly = true;
     options.Cookie.IsEssential = true;
 });
+
+builder.Services.AddDistributedMemoryCache();
 
 // Dependencias
 builder.Services.AddScoped<IUsuarios, UsuariosRepositorio>();

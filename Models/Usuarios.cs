@@ -16,7 +16,7 @@ namespace Proyecto_DSWI_GP3.Models
             [Required]
             public string Contraseña { get; set; }
 
-        [Required]
+            [Required]
             public string TipoUsuario { get; set; } // "Cliente" o "Administrador"
         }
 }
