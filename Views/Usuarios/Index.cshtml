@@ -3,52 +3,74 @@
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    var tiposUsuarios = Model.Select(u => u.TipoUsuario).Distinct();
 }
 
-<h1>Index</h1>
+<h1>Lista de Usuarios</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Crear Usuario</a>
 </p>
-<table class="table">
+
+<label for="filtro">Filtrar por tipo de usuario:</label>
+<select id="filtro" class="form-control" style="width: 200px; display: inline;">
+    <option value="Todos">Todos</option>
+    @foreach (var tipo in tiposUsuarios)
+    {
+        <option value="@tipo">@tipo</option>
+    }
+</select>
+
+<table class="table" id="tablaUsuarios">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.IdUsuario)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Nombre)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Correo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TipoUsuario)
-            </th>
+            <th>@Html.DisplayNameFor(model => model.IdUsuario)</th>
+            <th>@Html.DisplayNameFor(model => model.Nombre)</th>
+            <th>@Html.DisplayNameFor(model => model.Correo)</th>
+            <th>@Html.DisplayNameFor(model => model.TipoUsuario)</th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+        @foreach (var item in Model)
+        {
+            <tr data-tipousuario="@item.TipoUsuario">
+                <td>@Html.DisplayFor(modelItem => item.IdUsuario)</td>
+                <td>@Html.DisplayFor(modelItem => item.Nombre)</td>
+                <td>@Html.DisplayFor(modelItem => item.Correo)</td>
+                <td>@Html.DisplayFor(modelItem => item.TipoUsuario)</td>
+                <td>
+                    @Html.ActionLink("Editar", "Edit", new { id = item.IdUsuario }) | 
+                    @Html.ActionLink("Ver Cliente", "Details", new { id = item.IdUsuario }) |
+                    @Html.ActionLink("Eliminar", "Delete", new { id = item.IdUsuario })
+                </td>
+            </tr>
+        }
+    </tbody>
+
+    <tfoot>
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdUsuario)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Correo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TipoUsuario)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new {id=item.IdUsuario }) |
-                @Html.ActionLink("Details", "Details", new { id = item.IdUsuario }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.IdUsuario })
+            <td colspan="8" class="text-end">
+                <strong>Total de Registros: </strong> @Model.Count()
             </td>
         </tr>
-}
-    </tbody>
+    </tfoot>
 </table>
+
+@section Scripts {
+    <script>
+        document.getElementById('filtro').addEventListener('change', function () {
+            var tipoSeleccionado = this.value;
+            var filas = document.querySelectorAll('#tablaUsuarios tbody tr');
+
+            filas.forEach(function (fila) {
+                var tipo = fila.getAttribute('data-tipousuario');
+                if (tipoSeleccionado === 'Todos' || tipo === tipoSeleccionado) {
+                    fila.style.display = '';
+                } else {
+                    fila.style.display = 'none';
+                }
+            });
+        });
+    </script>
+}

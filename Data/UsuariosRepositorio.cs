@@ -12,7 +12,16 @@ namespace Proyecto_DSWI_GP3.Data
         {
             _config = config;
         }
-
+        public async Task<IEnumerable<Usuarios>> Listar()
+        {
+            using (var clienteHttp = new HttpClient())
+            {
+                clienteHttp.BaseAddress = new Uri(_config["Services:url"]);
+                var respuesta = await clienteHttp.GetAsync("Usuarios");
+                var data = await respuesta.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<List<Usuarios>>(data);
+            }
+        }
         public async Task<bool> Registrar(Usuarios usuarios)
         {
             using (var clienteHttp = new HttpClient())
@@ -27,7 +36,6 @@ namespace Proyecto_DSWI_GP3.Data
                 return bool.Parse(data);
             }
         }
-
         public async Task<bool> Actualizar(Usuarios usuarios)
         {
             using (var clienteHttp = new HttpClient())
@@ -39,7 +47,6 @@ namespace Proyecto_DSWI_GP3.Data
                 return bool.Parse(data);
             }
         }
-
         public async Task<bool> Eliminar(int id)
         {
             using (var clienteHttp = new HttpClient())
@@ -50,18 +57,6 @@ namespace Proyecto_DSWI_GP3.Data
                 return bool.Parse(data);
             }
         }
-
-        public async Task<IEnumerable<Usuarios>> Listar()
-        {
-            using (var clienteHttp = new HttpClient())
-            {
-                clienteHttp.BaseAddress = new Uri(_config["Services:url"]);
-                var respuesta = await clienteHttp.GetAsync("Usuarios");
-                var data = await respuesta.Content.ReadAsStringAsync();
-                return JsonConvert.DeserializeObject<List<Usuarios>>(data);
-            }
-        }
-
         public async Task<Usuarios> ObtenerPorId(int id)
         {
             using (var clienteHttp = new HttpClient())

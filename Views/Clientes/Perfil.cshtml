@@ -14,7 +14,7 @@
 
         <div class="mb-3">
             <label asp-for="Nombre" class="form-label">Nombre</label>
-            <input asp-for="Nombre" class="form-control" style="background-color: #1e1e1e; color: white;" />
+            <input asp-for="Nombre" class="form-control" style="background-color: #1e1e1e; color: white;" readonly />
         </div>
 
         <div class="mb-3">
@@ -24,7 +24,7 @@
 
         <div class="mb-3">
             <label asp-for="DNI" class="form-label">DNI</label>
-            <input asp-for="DNI" class="form-control" style="background-color: #1e1e1e; color: white;" />
+            <input asp-for="DNI" class="form-control" style="background-color: #1e1e1e; color: white;" readonly />
         </div>
 
         <div class="mb-3">
@@ -34,6 +34,10 @@
 
         <button type="button" class="btn btn-lila" style="background-color: #8a2be2; color: white; padding: 8px 15px;" data-bs-toggle="modal" data-bs-target="#confirmModal">
             Actualizar
+        </button>
+
+        <button type="button" class="btn btn-lila" style="background-color: #8a2be2; color: white; padding: 8px 15px;" onclick="window.location.href='@Url.Action("Index", "PanelCliente")'">
+            Regresar
         </button>
 
         <!-- Modal -->

@@ -1,0 +1,58 @@
+﻿@model Proyecto_DSWI_GP3.Models.Eventos
+
+@{
+    ViewData["Title"] = "CrearEventoAdmin";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h1>Crear Evento </h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CrearEventoAdmin">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="NombreEvento" class="control-label"></label>
+                <input asp-for="NombreEvento" class="form-control" />
+                <span asp-validation-for="NombreEvento" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TipoEvento" class="control-label"></label>
+                <input asp-for="TipoEvento" class="form-control" />
+                <span asp-validation-for="TipoEvento" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Lugar" class="control-label"></label>
+                <input asp-for="Lugar" class="form-control" />
+                <span asp-validation-for="Lugar" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Fecha" class="control-label"></label>
+                <input asp-for="Fecha" class="form-control" type="date" />
+                <span asp-validation-for="Fecha" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Hora" class="control-label"></label>
+                <input asp-for="Hora" class="form-control" type="time" />
+                <span asp-validation-for="Hora" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Descripcion" class="control-label"></label>
+                <input asp-for="Descripcion" class="form-control" />
+                <span asp-validation-for="Descripcion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="ListaEventosAdmin">Regresar</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
