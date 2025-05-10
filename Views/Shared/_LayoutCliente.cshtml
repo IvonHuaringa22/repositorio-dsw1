@@ -1,4 +1,4 @@
-﻿@{
+@{
     Layout = null;
 }
 <!DOCTYPE html>
@@ -12,29 +12,30 @@
     <link rel="stylesheet" href="~/Proyecto_DSWI_GP3.styles.css" asp-append-version="true" />
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
     <style>
         /* Asegura que el contenido ocupe toda la altura disponible */
         html, body {
-            height: 100%;
-            margin: 0;
+        height: 100%;
+        margin: 0;
         }
 
         .wrapper {
-            display: flex;
-            flex-direction: column;
-            min-height: 100%;
+        display: flex;
+        flex-direction: column;
+        min-height: 100%;
         }
 
         .main-content {
-            flex: 1;
+        flex: 1;
         }
 
         footer {
-            background-color: #1c1c1c;
-            color: white;
-            text-align: center;
-            padding: 10px;
-            margin-top: auto;
+        background-color: #1c1c1c;
+        color: white;
+        text-align: center;
+        padding: 10px;
+        margin-top: auto;
         }
     </style>
 </head>
@@ -45,55 +46,64 @@
         <div class="text-center">
             <img src="~/img/banner.jpg" class="img-fluid w-100" style="max-height: 250px; object-fit: cover;" alt="Portada" />
         </div>
+      
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg shadow-sm" style="background-color: #1c1c1c; border-bottom: 3px solid #c69aff;">
+            <div class="container">
+                <!-- LOGO + Inicio + Eventos (IZQUIERDA) -->
+                <a class="navbar-brand d-flex align-items-center me-4" asp-controller="PanelCliente" asp-action="Index">
+                    <img src="~/img/logo.png" alt="Logo" width="48" height="48" class="rounded-circle me-2">
+                </a>
 
-         <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg shadow-sm" style="background-color: #1c1c1c; border-bottom: 3px solid #c69aff;">
-        <div class="container">
-            <!-- LOGO + Inicio + Eventos (IZQUIERDA) -->
-            <a class="navbar-brand d-flex align-items-center me-4" asp-controller="PanelCliente" asp-action="Index">
-                <img src="~/img/logo.png" alt="Logo" width="65" height="65" class="rounded-circle me-2">
-            </a>
+                <!-- BOTÓN RESPONSIVE -->
+                <button class="navbar-toggler text-white border-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-            <!-- BOTÓN RESPONSIVE -->
-            <button class="navbar-toggler text-white border-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+                <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+                    <!-- IZQUIERDA -->
+                    <ul class="navbar-nav d-flex flex-row gap-3">
+                        <li class="nav-item">
+                            <a class="nav-link text-light fw-semibold" asp-controller="PanelCliente" asp-action="Index">
+                                <i class="bi bi-house-door me-1"></i>Inicio
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light fw-semibold" asp-controller="PanelCliente" asp-action="Eventos">
+                                <i class="bi bi-calendar-event me-1"></i>Eventos
+                            </a>
+                        </li>
+                    </ul>
 
-            <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
-                <!-- IZQUIERDA -->
-                <ul class="navbar-nav d-flex flex-row gap-3">
-                    <li class="nav-item">
-                        <a class="nav-link text-light fw-semibold" asp-controller="PanelCliente" asp-action="Index">
-                            <i class="bi bi-house-door me-1"></i>Inicio
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-light fw-semibold" asp-controller="PanelCliente" asp-action="Eventos">
-                            <i class="bi bi-calendar-event me-1"></i>Eventos
-                        </a>
-                    </li>
-                </ul>
+                    <!-- DERECHA -->
+                    <ul class="navbar-nav d-flex flex-row gap-3">
 
-                <!-- DERECHA -->
-                <ul class="navbar-nav d-flex flex-row gap-3">
-                    <li class="nav-item">
-                        <a class="nav-link text-light fw-semibold" href="#">
-                            <i class="bi bi-envelope me-1"></i>Contacto
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-light fw-semibold" asp-controller="PanelAdmin" asp-action="Index">
-                            <i class="bi bi-person me-1"></i>Mi cuenta
-                        </a>
-                    </li>
+                        @if (!string.IsNullOrEmpty(Context.Session.GetString("Nombre")))
+                        {
+                            <li class="nav-item">
+                                <div class="nav-link text-light fw-semibold">
+                                    <span class="navbar-text text-white me-3">
+                                        Bienvenido: @Context.Session.GetString("Nombre")
+                                    </span>
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <a class="btn btn-outline-light" style="border-color: #c69aff; color: #c69aff;" asp-controller="Clientes" asp-action="Perfil">
+                                    <i class="bi bi-person me-1"></i>Mi cuenta
+                                </a>
+                            </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link text-light position-relative" href="#">
-                            <i class="bi bi-cart3 fs-5"></i>
-                        </a>
-                    </li>
-
+                            <li class="nav-item">
+                                <a class="btn btn-outline-light" style="border-color: #c69aff; color: #c69aff;" asp-controller="Login" asp-action="Logout">Cerrar sesión</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="btn btn-outline-light" style="border-color: #c69aff; color: #c69aff;" href="/">Registrate</a>
+                            </li>
+                        }
                 </ul>
             </div>
         </div>
