@@ -1,4 +1,4 @@
-﻿@model Proyecto_DSWI_GP3.Models.DetalleEventoViewModel
+@model Proyecto_DSWI_GP3.Models.DetalleEventoViewModel
 
 @{
     ViewData["Title"] = "Detalle del Evento";
@@ -29,20 +29,15 @@
                     <td style="padding: 12px;">S/ @zonas.Precio.ToString("F2")</td>
                     <td style="padding: 12px;">@zonas.Capacidad</td>
                     <td style="padding: 12px;">
-                        <button class="btn btn-sm" disabled style="background-color: #666; color: white; border-radius: 20px; padding: 6px 20px; cursor: not-allowed;">
-                            COMPRAR
-                        </button>
+                        <div class="btn btn-sm">
+                            <a asp-action="ComprarEvento" asp-route-id="@Model.Eventos.IdEvento" class="btn btn-success btn-sm">
+                                Comprar
+                            </a>
+                        </div>
                     </td>
                 </tr>
             }
         </tbody>
     </table>
-
-    <div class="text-center mt-4">
-        <a asp-action="ComprarEvento" asp-route-id="@Model.Eventos.IdEvento" class="btn btn-success btn-lg">
-            Comprar
-        </a>
-    </div>
-
 </div>
 
