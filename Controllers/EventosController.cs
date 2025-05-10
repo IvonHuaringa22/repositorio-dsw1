@@ -15,6 +15,8 @@ namespace Proyecto_DSWI_GP3.Controllers
         }
 
         // GET: Eventos
+
+
         public async Task<IActionResult> ListaEventosAdmin()
         {
             var eventos = await repoEventos.Listar();

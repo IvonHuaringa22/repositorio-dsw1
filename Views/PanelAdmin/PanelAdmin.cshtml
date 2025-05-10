@@ -10,14 +10,40 @@
     <title>Panel de Administrador</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <style>
+        .contenido-principal {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            min-height: 60vh;
+        }
+
+            .contenido-principal h2 {
+                font-size: 4rem;
+                font-weight: bold;
+            }
+
+            .contenido-principal p {
+                font-size: 1.5rem;
+            }
+
+        .imagen-bienvenida {
+            width: 400px;
+            height: auto;
+            margin-top: 20px;
+            border-radius: 10px;
+        }
+    </style>
 </head>
 
 <body>
-    <div class="d-flex">
+    <div class="d-flex justify-content-center align-items-center vh-100">
         <!-- Contenido principal -->
-        <main class="p-4 flex-grow-1">
+        <main class="p-4 contenido-principal">
             <h2>Bienvenido, administrador</h2>
             <p>Selecciona una opción del menú para comenzar.</p>
+            <img class="imagen-bienvenida" src="~/img/logo.jpg" alt="Imagen de bienvenida">
         </main>
     </div>
 
