@@ -5,27 +5,34 @@
     Layout = "~/Views/Shared/_LayoutCliente.cshtml";
 }
 
-<div class="container py-4">
-    <h2 class="text-white mb-3">@Model.Eventos.NombreEvento</h2>
-    <p class="text-white">@Model.Eventos.Descripcion</p>
-    <p class="text-white"><strong>Fecha:</strong> @Model.Eventos.Fecha.ToString("dd/MM/yyyy")</p>
+<div class="container py-4" style="background-color: #1c1c1c; border-radius: 10px; padding: 30px;">
+    <h2 class="text-white mb-3" style="font-size: 28px; font-weight: bold;">@Model.Eventos.NombreEvento</h2>
+    <p class="text-white" style="font-size: 16px;">@Model.Eventos.Descripcion</p>
+    <p class="text-white" style="font-size: 16px;"><strong>Fecha:</strong> @Model.Eventos.Fecha.ToString("dd/MM/yyyy")</p>
 
-    <h4 class="text-white mt-4">Zonas disponibles</h4>
-    <table class="table table-dark table-striped mt-2">
-        <thead>
+    <h4 class="text-white mt-4" style="font-size: 20px; margin-top: 30px;">Zonas disponibles</h4>
+
+    <table class="table mt-3" style="color: white; background-color: #2b2b2b; border-radius: 8px; overflow: hidden;">
+        <thead style="background-color: #3a3a3a;">
             <tr>
-                <th>Zona</th>
-                <th>Precio</th>
-                <th>Capacidad</th>
+                <th style="padding: 12px;">Zona</th>
+                <th style="padding: 12px;">Precio</th>
+                <th style="padding: 12px;">Capacidad</th>
+                <th style="padding: 12px;">Acción</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var zonas in Model.Zonas ?? new List<Zonas>())
             {
                 <tr>
-                    <td>@zonas.NombreZona</td>
-                    <td>S/ @zonas.Precio.ToString("F2")</td>
-                    <td>@zonas.Capacidad</td>
+                    <td style="padding: 12px;">@zonas.NombreZona</td>
+                    <td style="padding: 12px;">S/ @zonas.Precio.ToString("F2")</td>
+                    <td style="padding: 12px;">@zonas.Capacidad</td>
+                    <td style="padding: 12px;">
+                        <button class="btn btn-sm" disabled style="background-color: #666; color: white; border-radius: 20px; padding: 6px 20px; cursor: not-allowed;">
+                            COMPRAR
+                        </button>
+                    </td>
                 </tr>
             }
         </tbody>
@@ -38,3 +45,4 @@
     </div>
 
 </div>
+

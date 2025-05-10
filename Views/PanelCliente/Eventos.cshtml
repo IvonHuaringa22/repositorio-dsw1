@@ -6,22 +6,42 @@
 }
 
 <div class="container py-5">
-    <h3>Eventos Disponibles</h3>
+    <h3 class="mb-4 text-white">Eventos Disponibles</h3>
     <div class="row">
         @foreach (var eventos in Model)
         {
-            <div class="col-md-4 mb-3">
-                <div class="card bg-dark text-white">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">@eventos.NombreEvento</h5>
-                        <p class="card-text">@eventos.Descripcion</p>
-                        <p class="card-text">Fecha: @eventos.Fecha.ToString("dd/MM/yyyy")</p>
-                        <p class="card-text">Hora: @eventos.Hora.ToString(@"hh\:mm")</p>
-                        <a asp-controller="PanelCliente" asp-action="Detalle" asp-route-id="@eventos.IdEvento" class="btn btn-outline-light mt-2">Ver más</a>
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-lg border-0 overflow-hidden" style="border-radius: 1rem;">
+                    <!-- Imagen superior -->
+                    <img src="~/img/evento.jpg" class="card-img-top" style="height: 200px; object-fit: cover;" alt="Imagen del evento" />
 
+                    <!-- Contenido del evento -->
+                    <div class="card-body bg-dark text-white p-4">
+                        <h5 class="card-title fw-bold">@eventos.NombreEvento</h5>
+                        <p class="card-text">@eventos.Descripcion</p>
+
+                        <p class="mb-1">
+                            <i class="bi bi-geo-alt-fill me-2"></i> @eventos.Lugar
+                        </p>
+                        <p class="mb-1">
+                            <i class="bi bi-calendar-event me-2"></i> Fecha: @eventos.Fecha.ToString("dd/MM/yyyy")
+                        </p>
+                        <p class="mb-3">
+                            <i class="bi bi-clock-fill me-2"></i> Hora: @eventos.Hora.ToString(@"hh\:mm")
+                        </p>
+
+                        <a asp-controller="PanelCliente"
+                           asp-action="Detalle"
+                           asp-route-id="@eventos.IdEvento"
+                           class="btn fw-bold w-100"
+                           style="background-color: #d4a6f2; color: #111;">
+                            COMPRAR
+                        </a>
                     </div>
                 </div>
             </div>
         }
     </div>
 </div>
+
+

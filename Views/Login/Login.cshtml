@@ -5,44 +5,41 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="container py-5">
-    <div class="row justify-content-center align-items-center">
-        <!-- Imagen a la izquierda -->
-        <div class="col-md-6 d-none d-md-block">
-            <img src="~/img/bienvenido.jpg" class="img-fluid rounded shadow" alt="Imagen de bienvenida" />
-        </div>
+<div class="container-fluid d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+    <div class="card shadow-lg rounded-4 p-4" style="max-width: 400px; width: 100%; background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(10px); color: #7f7f7f;">
+        <h4 class="text-center fw-bold mb-4 text-dark">Iniciar Sesión</h4>
 
-        <!-- Formulario a la derecha -->
-        <div class="col-md-6">
-            <div class="card shadow-lg border-0" style="background-color: #1c1c1c; color: white;">
-                <div class="card-header text-center" style="background-color: #c69aff; color: #111;">
-                    <h4 class="mb-0 fw-bold">Iniciar Sesión</h4>
-                </div>
-                <div class="card-body">
-                    <form asp-controller="Login" asp-action="Login" method="post">
-                        <div class="mb-3">
-                            <label class="form-label">Correo electrónico:</label>
-                            <input asp-for="Correo" class="form-control bg-dark text-white border-secondary" type="email" required />
-                        </div>
-
-                        <div class="mb-3">
-                            <label class="form-label">Contraseña:</label>
-                            <input asp-for="Contraseña" class="form-control bg-dark text-white border-secondary" type="password" required />
-                        </div>
-
-                        <div class="d-grid">
-                            <button type="submit" class="btn" style="background-color: #c69aff; color: #111;">Ingresa</button>
-                        </div>
-                    </form>
-
-                    @if (ViewBag.Mensaje != null)
-                    {
-                        <div class="alert alert-danger mt-3 text-center" role="alert">
-                            @ViewBag.Mensaje
-                        </div>
-                    }
-                </div>
+        <form asp-controller="Login" asp-action="Login" method="post">
+            <div class="mb-3">
+                <label class="form-label">Correo electrónico</label>
+                <input asp-for="Correo" type="email" class="form-control" required>
             </div>
-        </div>
+
+            <div class="mb-3">
+                <label class="form-label">Contraseña</label>
+                <input asp-for="Contraseña" type="password" class="form-control" required>
+            </div>
+
+            <div class="d-grid">
+                <button type="submit" class="btn btn-dark fw-bold">Ingresar</button>
+            </div>
+        </form>
+
+        @if (ViewBag.Mensaje != null)
+        {
+            <div class="alert alert-danger text-center mt-3">@ViewBag.Mensaje</div>
+        }
+
+        <p class="text-center mt-3 small">
+            Al iniciar sesión aceptas los
+            <a href="#" class="text-decoration-underline text-dark">términos</a> y la
+            <a href="#" class="text-decoration-underline text-dark">política de privacidad</a>.
+        </p>
+
+        <p class="text-center mt-2 small">
+            ¿No tienes cuenta?
+            <a href="#" class="fw-bold text-dark">Regístrate</a>
+        </p>
     </div>
 </div>
+
