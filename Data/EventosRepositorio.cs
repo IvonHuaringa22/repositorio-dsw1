@@ -1,6 +1,7 @@
 ﻿using Proyecto_DSWI_GP3.Data.Contrato;
 using Proyecto_DSWI_GP3.Models;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace Proyecto_DSWI_GP3.Data
 {
@@ -16,23 +17,30 @@ namespace Proyecto_DSWI_GP3.Data
             using (var clienteHttp = new HttpClient())
             {
                 clienteHttp.BaseAddress = new Uri(_config["Services:url"]);
-                var respuesta = await clienteHttp.GetAsync("Eventos/listar");
+                var respuesta = await clienteHttp.GetAsync("Eventos");
                 var data = await respuesta.Content.ReadAsStringAsync();
                 return JsonConvert.DeserializeObject<List<Eventos>>(data);
             }
         }
+
+        public async Task<List<Eventos>> BuscarPorNombre(string nombre)
+        {
+            using (var clienteHttp = new HttpClient())
+            {
+                clienteHttp.BaseAddress = new Uri(_config["Services:url"]);
+                var respuesta = await clienteHttp.GetAsync($"Eventos/buscar?nombre={nombre}");
+                var data = await respuesta.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<List<Eventos>>(data);
+            }
+        }
+
         public async Task<bool> Registrar(Eventos eventos)
         {
             using (var clienteHttp = new HttpClient())
             {
                 clienteHttp.BaseAddress = new Uri(_config["Services:url"]);
 
-               var contenido = new StringContent(
-                JsonConvert.SerializeObject(eventos),
-                System.Text.Encoding.UTF8,
-                "application/json"
-           );
-
+                var contenido = new StringContent(JsonConvert.SerializeObject(eventos),System.Text.Encoding.UTF8,"application/json");
                 var respuesta = await clienteHttp.PostAsync("Eventos", contenido);
                 var data = await respuesta.Content.ReadAsStringAsync();
 
@@ -47,7 +55,12 @@ namespace Proyecto_DSWI_GP3.Data
                 var contenido = new StringContent(JsonConvert.SerializeObject(eventos), System.Text.Encoding.UTF8, "application/json");
                 var respuesta = await clienteHttp.PutAsync("Eventos", contenido);
                 var data = await respuesta.Content.ReadAsStringAsync();
-                return bool.Parse(data);
+                if (respuesta.IsSuccessStatusCode)
+                {
+                    return true;
+                }
+
+                return false;
             }
         }
         public async Task<bool> Eliminar(int id)
@@ -56,8 +69,7 @@ namespace Proyecto_DSWI_GP3.Data
             {
                 clienteHttp.BaseAddress = new Uri(_config["Services:url"]);
                 var respuesta = await clienteHttp.DeleteAsync($"Eventos/{id}");
-                var data = await respuesta.Content.ReadAsStringAsync();
-                return bool.Parse(data);
+                return respuesta.IsSuccessStatusCode;
             }
         }
         public async Task<Eventos> ObtenerPorId(int id)

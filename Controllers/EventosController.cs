@@ -21,6 +21,26 @@ namespace Proyecto_DSWI_GP3.Controllers
             return View(eventos);
         }
 
+        // POST: Eventos /Buscar
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ListaEventosAdmin(string searchString)
+        {
+            ViewData["CurrentFilter"] = searchString;
+
+            if(searchString == null)
+            {
+                var eventos = await repoEventos.Listar();
+
+                return View("ListaEventosAdmin", eventos);
+            }
+            else
+            {
+                var eventos = await repoEventos.BuscarPorNombre(searchString);
+                return View("ListaEventosAdmin", eventos);
+            }
+        }
+
         // GET: Eventos/Details
         public async Task<IActionResult> DetalleEventoAdmin(int id)
         {
@@ -45,7 +65,7 @@ namespace Proyecto_DSWI_GP3.Controllers
             if (ModelState.IsValid)
             {
                 await repoEventos.Registrar(evento);
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(ListaEventosAdmin));
             }
             return View(evento);
         }
@@ -74,7 +94,7 @@ namespace Proyecto_DSWI_GP3.Controllers
             if (ModelState.IsValid)
             {
                 await repoEventos.Actualizar(evento);
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(DetalleEventoAdmin), new { id = evento.IdEvento });
             }
             return View(evento);
         }
@@ -96,7 +116,7 @@ namespace Proyecto_DSWI_GP3.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             await repoEventos.Eliminar(id);
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(ListaEventosAdmin));
         }
     }
 }

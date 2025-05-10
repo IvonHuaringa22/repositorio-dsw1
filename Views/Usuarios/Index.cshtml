@@ -40,13 +40,21 @@
                 <td>@Html.DisplayFor(modelItem => item.Correo)</td>
                 <td>@Html.DisplayFor(modelItem => item.TipoUsuario)</td>
                 <td>
-                    @* @Html.ActionLink("Editar", "Edit", new { id = item.IdUsuario }) | *@
+                    @Html.ActionLink("Editar", "Edit", new { id = item.IdUsuario }) | 
                     @Html.ActionLink("Ver Cliente", "Details", new { id = item.IdUsuario }) |
-                    @* @Html.ActionLink("Eliminar", "Delete", new { id = item.IdUsuario }) *@
+                    @Html.ActionLink("Eliminar", "Delete", new { id = item.IdUsuario })
                 </td>
             </tr>
         }
     </tbody>
+
+    <tfoot>
+        <tr>
+            <td colspan="8" class="text-end">
+                <strong>Total de Registros: </strong> @Model.Count()
+            </td>
+        </tr>
+    </tfoot>
 </table>
 
 @section Scripts {

@@ -9,5 +9,6 @@ namespace Proyecto_DSWI_GP3.Data.Contrato
         Task<bool> Actualizar(Eventos eventos);
         Task<bool> Eliminar(int id);
         Task<Eventos> ObtenerPorId(int id);
+        Task<List<Eventos>> BuscarPorNombre(string nombre);
     }
 }
