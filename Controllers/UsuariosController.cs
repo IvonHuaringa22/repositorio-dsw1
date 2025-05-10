@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Proyecto_DSWI_GP3.Data.Contrato;
 using Proyecto_DSWI_GP3.Models;
 
@@ -34,6 +35,11 @@ namespace Proyecto_DSWI_GP3.Controllers
         // GET: Usuarios/Create
         public IActionResult Create()
         {
+            ViewBag.TiposUsuario = new SelectList(new List<string>
+                {
+                    "Administrador",
+                    "Cliente"
+                });
             return View();
         }
 
@@ -58,6 +64,11 @@ namespace Proyecto_DSWI_GP3.Controllers
             {
                 return NotFound();
             }
+            ViewBag.TiposUsuario = new SelectList(new List<string>
+                {
+                    "Administrador",
+                    "Cliente"
+                });
             return View(usuario);
         }
 
@@ -71,12 +82,8 @@ namespace Proyecto_DSWI_GP3.Controllers
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
-            {
-                await repoUsuarios.Actualizar(usuarios);
-                return RedirectToAction(nameof(Index));
-            }
-            return View(usuarios);
+            await repoUsuarios.Actualizar(usuarios);
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: Usuarios/Delete
@@ -87,14 +94,6 @@ namespace Proyecto_DSWI_GP3.Controllers
             {
                 return NotFound();
             }
-            return View(usuario);
-        }
-
-        // POST: Usuarios/Delete
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
             await repoUsuarios.Eliminar(id);
             return RedirectToAction(nameof(Index));
         }
