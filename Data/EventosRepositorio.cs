@@ -28,7 +28,7 @@ namespace Proyecto_DSWI_GP3.Data
             using (var clienteHttp = new HttpClient())
             {
                 clienteHttp.BaseAddress = new Uri(_config["Services:url"]);
-                var respuesta = await clienteHttp.GetAsync($"Eventos/buscar?nombre={nombre}");
+                var respuesta = await clienteHttp.GetAsync($"Eventos/Buscar?nombre={nombre}");
                 var data = await respuesta.Content.ReadAsStringAsync();
                 return JsonConvert.DeserializeObject<List<Eventos>>(data);
             }
