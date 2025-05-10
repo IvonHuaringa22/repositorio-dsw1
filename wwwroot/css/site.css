@@ -20,3 +20,10 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+html, body {
+    height: 100%;
+    margin: 0;
+    background: url('/img/portada.jpg') no-repeat center center fixed;
+    background-size: cover;
+}

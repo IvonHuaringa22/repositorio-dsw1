@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Proyecto_DSWI_GP3.styles.css" asp-append-version="true" />
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
 </head>
 
 <body style="background-color: #111; color: white;">
@@ -16,34 +18,60 @@
     </div>
 
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg" style="background-color: #1c1c1c; border-bottom: 3px solid #c69aff;">
-        <div class="container-fluid">
-            <a class="navbar-brand fw-bold" asp-controller="PanelCliente" asp-action="Index" style="color: #c69aff;">TICKET EASY</a>
-            <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarAdmin" aria-controls="navbarAdmin" aria-expanded="false" aria-label="Toggle navigation">
+    <nav class="navbar navbar-expand-lg shadow-sm" style="background-color: #1c1c1c; border-bottom: 3px solid #c69aff;">
+        <div class="container">
+            <!-- LOGO + Inicio + Eventos (IZQUIERDA) -->
+            <a class="navbar-brand d-flex align-items-center me-4" asp-controller="PanelCliente" asp-action="Index">
+                <img src="~/img/logo.png" alt="Logo" width="48" height="48" class="rounded-circle me-2">
+            </a>
+
+            <!-- BOTÓN RESPONSIVE -->
+            <button class="navbar-toggler text-white border-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div class="collapse navbar-collapse" id="navbarAdmin">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+                <!-- IZQUIERDA -->
+                <ul class="navbar-nav d-flex flex-row gap-3">
                     <li class="nav-item">
-                        <a class="nav-link text-white" asp-controller="PanelCliente" asp-action="Index">Inicio</a>
+                        <a class="nav-link text-light fw-semibold" asp-controller="PanelCliente" asp-action="Index">
+                            <i class="bi bi-house-door me-1"></i>Inicio
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" asp-controller="PanelAdmin" asp-action="Index">Regístrate</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" asp-controller="PanelCliente" asp-action="Eventos">Próximos Eventos</a>
+                        <a class="nav-link text-light fw-semibold" asp-controller="PanelCliente" asp-action="Eventos">
+                            <i class="bi bi-calendar-event me-1"></i>Eventos
+                        </a>
                     </li>
                 </ul>
-                @if (!string.IsNullOrEmpty(Context.Session.GetString("Nombre")))
-                {
-                    <span class="navbar-text text-white me-3">
-                        Bienvenido: @Context.Session.GetString("Nombre")
-                    </span>
-                }
+
+                <!-- DERECHA -->
+                <ul class="navbar-nav d-flex flex-row gap-3">
+                    <li class="nav-item">
+                        <a class="nav-link text-light fw-semibold" href="#">
+                            <i class="bi bi-envelope me-1"></i>Contacto
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light fw-semibold" asp-controller="PanelAdmin" asp-action="Index">
+                            <i class="bi bi-person me-1"></i>Mi cuenta
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link text-light position-relative" href="#">
+                            <i class="bi bi-cart3 fs-5"></i>
+                        </a>
+                    </li>
+
+                </ul>
             </div>
         </div>
     </nav>
+
+
+
 
     <!-- Contenido principal -->
     <div class="container py-4">
@@ -52,23 +80,9 @@
         </main>
     </div>
 
-    <!-- Imágenes inferiores -->
-    <div class="container text-center my-5">
-        <div class="row">
-            <div class="col-md-4 mb-3">
-                <img src="~/img/img1.jpg" class="img-fluid rounded shadow" alt="imagen 1" />
-            </div>
-            <div class="col-md-4 mb-3">
-                <img src="~/img/img2.jpg" class="img-fluid rounded shadow" alt="imagen 2" />
-            </div>
-            <div class="col-md-4 mb-3">
-                <img src="~/img/img3.jpg" class="img-fluid rounded shadow" alt="imagen 3" />
-            </div>
-        </div>
-    </div>
-
     <!-- Footer -->
-    <footer class="text-center text-white py-3" style="background-color: #1c1c1c; border-top: 3px solid #c69aff;">
+    <footer class="text-center text-white py-3"
+            style="background-color: #1c1c1c; border-top: 3px solid #c69aff;">
         &copy; 2025 - TICKET EASY - Todos los derechos reservados
     </footer>
 
