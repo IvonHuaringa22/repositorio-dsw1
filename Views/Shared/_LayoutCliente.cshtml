@@ -76,14 +76,20 @@
                 </ul>
 
                 <!-- DERECHA -->
-                <ul class="navbar-nav d-flex flex-row gap-3">
+                    <ul class="navbar-nav d-flex flex-row gap-3">
+
+                        @if (!string.IsNullOrEmpty(Context.Session.GetString("Nombre")))
+                        {
+                            <li class="nav-item">
+                                <div class="nav-link text-light fw-semibold">
+                                    <span class="navbar-text text-white me-3">
+                                        Bienvenido: @Context.Session.GetString("Nombre")
+                                    </span>
+                                </div>
+                            </li>
+                        }
                     <li class="nav-item">
-                        <a class="nav-link text-light fw-semibold" href="#">
-                            <i class="bi bi-envelope me-1"></i>Contacto
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-light fw-semibold" asp-controller="PanelAdmin" asp-action="Index">
+                            <a class="nav-link text-light fw-semibold" asp-controller="Clientes" asp-action="Perfil">
                             <i class="bi bi-person me-1"></i>Mi cuenta
                         </a>
                     </li>
