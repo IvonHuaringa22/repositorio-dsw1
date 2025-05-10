@@ -1,12 +1,13 @@
 ﻿@model Proyecto_DSWI_GP3.Models.Usuarios
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Editar Usuario";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    var tiposUsuarios = new List<string> { "Administrador", "Cliente", };
 }
 
-<h1>Editar Usuario</h1>
-
+<div class="container mt-4">
+    <h1 class="text-center mb-4">Editar Usuario</h1>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -37,12 +38,16 @@
             </div>
         </form>
     </div>
-</div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
+    <div class="text-center mt-3">
+        <a asp-action="Index" class="btn btn-secondary">
+            <i class="bi bi-arrow-left"></i> Volver a la lista
+        </a>
+    </div>
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

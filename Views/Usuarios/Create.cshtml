@@ -1,11 +1,13 @@
 ﻿@model Proyecto_DSWI_GP3.Models.Usuarios
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Crear Usuario";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    var tiposUsuarios = new List<string> { "Administrador", "Cliente", };
 }
 
-<h1>Create</h1>
+<div class="container mt-4">
+    <h1 class="text-center mb-4">Registro de Usuario</h1>
 
 <h4>Usuarios</h4>
 <hr />
@@ -38,12 +40,15 @@
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
+    <div class="text-center mt-3">
+        <a asp-action="Index" class="btn btn-secondary">
+            <i class="bi bi-arrow-left"></i> Volver a la lista
+        </a>
+    </div>
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

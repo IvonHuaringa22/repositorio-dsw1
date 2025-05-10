@@ -1,64 +1,75 @@
 ﻿@model Proyecto_DSWI_GP3.Models.Eventos
 
 @{
-    ViewData["Title"] = "EditEventoAdmin";
+    ViewData["Title"] = "Editar Evento";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    var tiposEventos = new List<string> { "Conferencia", "Seminario", "Taller", "Networking", "Webinar" }; // Agrega más tipos si es necesario
 }
 
-<h1>Editar Evento</h1>
+<div class="container mt-4">
+    <h1 class="text-center mb-4">Editar Evento</h1>
 
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="EditEventoAdmin">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="IdEvento" class="control-label"></label>
-                <input asp-for="IdEvento" class="form-control" readonly />
-                <span asp-validation-for="IdEvento" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="NombreEvento" class="control-label"></label>
-                <input asp-for="NombreEvento" class="form-control" />
-                <span asp-validation-for="NombreEvento" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="TipoEvento" class="control-label"></label>
-                <input asp-for="TipoEvento" class="form-control" />
-                <span asp-validation-for="TipoEvento" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Lugar" class="control-label"></label>
-                <input asp-for="Lugar" class="form-control" />
-                <span asp-validation-for="Lugar" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Fecha" class="control-label"></label>
-                <input asp-for="Fecha" class="form-control" type="date" />
-                <span asp-validation-for="Fecha" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Hora" class="control-label"></label>
-                <input asp-for="Hora" class="form-control" type="time" />
-                <span asp-validation-for="Hora" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Descripcion" class="control-label"></label>
-                <input asp-for="Descripcion" class="form-control" />
-                <span asp-validation-for="Descripcion" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Guardar" class="btn btn-primary" />
-            </div>
-        </form>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form asp-action="EditEventoAdmin" class="p-4 border rounded shadow">
+                <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+
+                <input asp-for="IdEvento" type="hidden" />
+
+                <div class="mb-3">
+                    <label asp-for="NombreEvento" class="form-label">Nombre del Evento</label>
+                    <input asp-for="NombreEvento" class="form-control" placeholder="Ingresa el nombre del evento" />
+                    <span asp-validation-for="NombreEvento" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="TipoEvento" class="form-label">Tipo de Evento</label>
+                    <input asp-for="TipoEvento" class="form-control" placeholder="Ingresa el tipo de evento" />
+                    <span asp-validation-for="TipoEvento" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Lugar" class="form-label">Lugar</label>
+                    <input asp-for="Lugar" class="form-control" placeholder="Ubicación del evento" />
+                    <span asp-validation-for="Lugar" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Fecha" class="form-label">Fecha del Evento</label>
+                    <input asp-for="Fecha" class="form-control" type="date" />
+                    <span asp-validation-for="Fecha" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Hora" class="form-label">Hora del Evento</label>
+                    <input asp-for="Hora" class="form-control" type="time" />
+                    <span asp-validation-for="Hora" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Descripcion" class="form-label">Descripción</label>
+                    <textarea asp-for="Descripcion" class="form-control" rows="3" placeholder="Detalles sobre el evento"></textarea>
+                    <span asp-validation-for="Descripcion" class="text-danger"></span>
+                </div>
+
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-success">
+                        <i class="bi bi-save"></i> Guardar Cambios
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="text-center mt-3">
+        <a asp-action="DetalleEventoAdmin" asp-route-id="@Model.IdEvento" class="btn btn-secondary">
+            <i class="bi bi-arrow-left"></i> Volver a los detalles
+        </a>
     </div>
 </div>
 
-<div>
-    <a asp-action="DetalleEventoAdmin" asp-route-id="@Model.IdEvento">Regresar</a>
-
-</div>
-
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }
