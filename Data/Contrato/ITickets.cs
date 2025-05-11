@@ -1,13 +1,13 @@
 ﻿using Proyecto_DSWI_GP3.Models;
+using System.Net.Sockets;
 
 namespace Proyecto_DSWI_GP3.Data.Contrato
 {
     public interface ITickets
     {
-        Task<IEnumerable<Tickets>> ListarTickets();
-        Task<Tickets> ObtenerTicketPorId(int id);
-        Task RegistrarTicket(Tickets tickets);
-        Task ActualizarTicket(Tickets tickets);
-        Task EliminarTicket(int id);
+        IEnumerable<Tickets> Listar();
+        Tickets ObtenerPorId(int id);
+        IEnumerable<Tickets> ObtenerTicketsPorCompra(int idCompra);
+        bool EliminarPorCompra(int idCompra);
     }
 }

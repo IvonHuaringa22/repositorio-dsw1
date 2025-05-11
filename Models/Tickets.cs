@@ -8,16 +8,12 @@ namespace Proyecto_DSWI_GP3.Models
         [Key]
         public int IdTicket { get; set; }
 
-        [Required]
+        [ForeignKey("Compra")]
         public int IdCompra { get; set; }
-
-        [ForeignKey("IdCompra")]
-        public Compras Compras { get; set; }
-
-        [Required]
+        [ForeignKey("Zona")]
         public int IdZona { get; set; }
+        [ForeignKey("Evento")]
+        public int IdEvento { get; set; }
 
-        [ForeignKey("IdZona")]
-        public Zonas Zonas { get; set; }
     }
 }

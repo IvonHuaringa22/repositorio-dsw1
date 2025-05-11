@@ -21,6 +21,7 @@ builder.Services.AddDistributedMemoryCache();
 // Dependencias
 builder.Services.AddScoped<IUsuarios, UsuariosRepositorio>();
 builder.Services.AddScoped<IEventos, EventosRepositorio>();
+builder.Services.AddScoped<ICompras, IComprasRepositorio>();
 
 var app = builder.Build();
 

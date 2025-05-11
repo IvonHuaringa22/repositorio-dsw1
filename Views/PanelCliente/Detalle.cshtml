@@ -10,6 +10,22 @@
     <p class="text-white" style="font-size: 16px;">@Model.Eventos.Descripcion</p>
     <p class="text-white" style="font-size: 16px;"><strong>Fecha:</strong> @Model.Eventos.Fecha.ToString("dd/MM/yyyy")</p>
 
+    <!-- ✅ Agrega las notificaciones aquí -->
+    @if (TempData["CompraExitosa"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["CompraExitosa"]
+        </div>
+    }
+
+    @if (TempData["CompraError"] != null)
+    {
+        <div class="alert alert-danger">
+            @TempData["CompraError"]
+        </div>
+    }
+    <!-- ✅ Fin de las notificaciones -->
+
     <h4 class="text-white mt-4" style="font-size: 20px; margin-top: 30px;">Zonas disponibles</h4>
 
     <table class="table mt-3" style="color: white; background-color: #2b2b2b; border-radius: 8px; overflow: hidden;">
@@ -29,15 +45,22 @@
                     <td style="padding: 12px;">S/ @zonas.Precio.ToString("F2")</td>
                     <td style="padding: 12px;">@zonas.Capacidad</td>
                     <td style="padding: 12px;">
-                        <div class="btn btn-sm">
-                            <a asp-action="ComprarEvento" asp-route-id="@Model.Eventos.IdEvento" class="btn btn-success btn-sm">
-                                Comprar
-                            </a>
-                        </div>
+                        <form asp-action="Comprar" asp-controller="PanelCliente" method="post">
+                            <input type="hidden" name="idEvento" value="@Model.Eventos.IdEvento" />
+                            <button type="submit" class="btn btn-success btn-sm" onclick="return confirmarCompra();">Comprar</button>
+                        </form>
                     </td>
+
                 </tr>
             }
         </tbody>
     </table>
 </div>
+
+<script>
+    function confirmarCompra() {
+        return confirm("¿Estás seguro de que deseas comprar esta entrada?");
+    }
+</script>
+
 
