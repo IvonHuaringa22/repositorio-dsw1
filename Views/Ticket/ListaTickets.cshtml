@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Proyecto_DSWI_GP3.Models.Tickets>
+
+@{
+    ViewData["Title"] = "ListaTickets";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h1>ListaTickets</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IdTicket)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdCompra)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdZona)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdTicket)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdCompra)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdZona)
+            </td>
+            <td>
+                @Html.ActionLink("Details", "TicketsPorId", new { id=item.IdTicket }) |   
+                    @Html.ActionLink("Delete", "Eliminar", new { idCompra = item.IdCompra })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -10,39 +10,45 @@
 
     <div class="row justify-content-center">
         <div class="col-md-6">
-            <div class="p-4 border rounded shadow">
-                <dl class="row">
-                    <dt class="col-sm-4">ID del Evento</dt>
-                    <dd class="col-sm-8">@Html.DisplayFor(model => model.IdEvento)</dd>
+            <div class="border rounded p-4 shadow-sm bg-white">
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Código del Evento:</label>
+                    <div>@Html.DisplayFor(model => model.IdEvento)</div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Nombre del Evento:</label>
+                    <div>@Html.DisplayFor(model => model.NombreEvento)</div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Tipo de Evento:</label>
+                    <div>@Html.DisplayFor(model => model.TipoEvento)</div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Lugar:</label>
+                    <div>@Html.DisplayFor(model => model.Lugar)</div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Fecha:</label>
+                    <div>@Html.DisplayFor(model => model.Fecha)</div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Hora:</label>
+                    <div>@Html.DisplayFor(model => model.Hora)</div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Descripción:</label>
+                    <div>@Html.DisplayFor(model => model.Descripcion)</div>
+                </div>
+            </div>
 
-                    <dt class="col-sm-4">Nombre del Evento</dt>
-                    <dd class="col-sm-8">@Html.DisplayFor(model => model.NombreEvento)</dd>
-
-                    <dt class="col-sm-4">Tipo de Evento</dt>
-                    <dd class="col-sm-8">@Html.DisplayFor(model => model.TipoEvento)</dd>
-
-                    <dt class="col-sm-4">Lugar</dt>
-                    <dd class="col-sm-8">@Html.DisplayFor(model => model.Lugar)</dd>
-
-                    <dt class="col-sm-4">Fecha</dt>
-                    <dd class="col-sm-8">@Html.DisplayFor(model => model.Fecha)</dd>
-
-                    <dt class="col-sm-4">Hora</dt>
-                    <dd class="col-sm-8">@Html.DisplayFor(model => model.Hora)</dd>
-
-                    <dt class="col-sm-4">Descripción</dt>
-                    <dd class="col-sm-8">@Html.DisplayFor(model => model.Descripcion)</dd>
-                </dl>
+            <div class="text-center mt-4">
+                <a asp-action="EditEventoAdmin" asp-route-id="@Model.IdEvento" class="btn btn-warning me-2">
+                    <i class="bi bi-pencil-square"></i> Editar Evento
+                </a>
+                <a asp-action="ListaEventosAdmin" class="btn btn-secondary">
+                    <i class="bi bi-arrow-left"></i> Regresar a la lista
+                </a>
             </div>
         </div>
-    </div>
-
-    <div class="text-center mt-3">
-        <a asp-action="EditEventoAdmin" asp-route-id="@Model.IdEvento" class="btn btn-warning">
-            <i class="bi bi-pencil-square"></i> Editar Evento
-        </a>
-        <a asp-action="ListaEventosAdmin" class="btn btn-secondary">
-            <i class="bi bi-arrow-left"></i> Regresar a la lista
-        </a>
     </div>
 </div>

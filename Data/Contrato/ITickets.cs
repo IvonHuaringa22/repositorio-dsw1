@@ -6,8 +6,7 @@ namespace Proyecto_DSWI_GP3.Data.Contrato
     {
         Task<IEnumerable<Tickets>> ListarTickets();
         Task<Tickets> ObtenerTicketPorId(int id);
-        Task RegistrarTicket(Tickets tickets);
-        Task ActualizarTicket(Tickets tickets);
+        Task<IEnumerable<Tickets>> ObtenerTicketPorCompra(int idCompra);
         Task EliminarTicket(int id);
     }
 }

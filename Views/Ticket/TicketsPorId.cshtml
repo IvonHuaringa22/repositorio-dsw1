@@ -1,0 +1,36 @@
+﻿@model Proyecto_DSWI_GP3.Models.Tickets
+
+@{
+    ViewData["Title"] = "TicketsPorId";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h1>TicketsPorId</h1>
+
+<div>
+    <h4>Tickets</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IdTicket)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IdTicket)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IdCompra)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IdCompra)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IdZona)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IdZona)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="ListaTickets">Back to List</a>
+</div>
