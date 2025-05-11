@@ -23,6 +23,7 @@ builder.Services.AddScoped<IUsuarios, UsuariosRepositorio>();
 builder.Services.AddScoped<IEventos, EventosRepositorio>();
 builder.Services.AddScoped<ICompras, ComprasRepository>();
 builder.Services.AddScoped<ITickets, TicketRepository>();
+builder.Services.AddScoped<ICompras, ComprasRepository>();
 
 var app = builder.Build();
 

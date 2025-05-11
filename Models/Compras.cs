@@ -22,5 +22,11 @@ namespace Proyecto_DSWI_GP3.Models
 
         [Required]
         public string EstadoPago { get; set; }
+
+        [ForeignKey("Zona")]   //*************
+        public int IdZona { get; set; }
+
+        [ForeignKey("Evento")]
+        public int IdEvento { get; set; }
     }
 }

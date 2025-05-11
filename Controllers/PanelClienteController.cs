@@ -3,6 +3,8 @@ using System.Text;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Proyecto_DSWI_GP3.Models;
+using Proyecto_DSWI_GP3.Data;
+using Proyecto_DSWI_GP3.Data.Contrato;
 
 namespace Proyecto_DSWI_GP3.Controllers
 {
@@ -10,11 +12,13 @@ namespace Proyecto_DSWI_GP3.Controllers
     {
         private readonly HttpClient _http;
         private readonly IConfiguration _config;
+        private readonly ICompras _repo;
 
-        public PanelClienteController(IHttpClientFactory httpClientFactory, IConfiguration config)
+        public PanelClienteController(IHttpClientFactory httpClientFactory, IConfiguration config, ICompras repo)
         {
             _http = httpClientFactory.CreateClient();
             _config = config;
+            _repo = repo;
         }
 
         public async Task<IActionResult> Eventos()
@@ -75,6 +79,40 @@ namespace Proyecto_DSWI_GP3.Controllers
             return View("Detalle", viewModel);
         }
 
+        //********************************************************************
+        private int ObtenerUsuarioActual()
+        {
+            return HttpContext.Session.GetInt32("IdUsuario") ?? 0;
+        }
+
+        [HttpPost]
+        public IActionResult Comprar(int idEvento)
+        {
+            var idUsuario = ObtenerUsuarioActual();
+
+            if (idUsuario == 0) // Verifica si el usuario ha iniciado sesión
+                return RedirectToAction("Login", "Login");
+
+            var compra = new Compras
+            {
+                IdUsuario = idUsuario,
+                IdEvento = idEvento,
+                MetodoPago = "Tarjeta", // Método de pago fijo
+                EstadoPago = "Pendiente",
+                IdZona = 1 // Zona predeterminada
+            };
+
+            var exito = _repo.RegistrarCompra(compra);
+
+            if (exito)
+            {
+                TempData["CompraExitosa"] = "¡Compra realizada correctamente!";
+                return RedirectToAction("Detalle", new { id = idEvento }); // Redirige de nuevo a la página del evento
+            }
+
+            TempData["CompraError"] = "Hubo un problema al procesar la compra.";
+            return RedirectToAction("Detalle", new { id = idEvento }); // Redirige a la misma página con mensaje de error
+        }
 
     }
 }

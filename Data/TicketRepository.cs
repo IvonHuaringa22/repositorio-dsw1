@@ -12,7 +12,6 @@ namespace Proyecto_DSWI_GP3.Data
             _config = config;
         }
 
-
         public async Task EliminarTicket(int id)
         {
             using (var clienteHttp = new HttpClient())

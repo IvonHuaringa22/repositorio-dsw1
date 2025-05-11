@@ -19,5 +19,8 @@ namespace Proyecto_DSWI_GP3.Models
 
         [ForeignKey("IdZona")]
         public Zonas Zonas { get; set; }
+
+        [ForeignKey("Evento")]  //*******
+        public int IdEvento { get; set; }
     }
 }
